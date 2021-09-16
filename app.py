@@ -45,6 +45,7 @@ def main():
     with open('tokenizer.pickle', 'rb') as handle:
         tokenizer = pickle.load(handle)
     comment = st.text_input("Enter your comment","Type here...")
+    prediction=""
     if st.button("Submit"):
         prediction = predict(tokenizer,model,comment)
     st.success("Sentiment of your comment is : "+prediction)
