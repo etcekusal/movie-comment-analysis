@@ -5,6 +5,9 @@ st.subheader("welcome")
 
 import re
 from tensorflow.keras.preprocessing.sequence import pad_sequences
+from tensorflow.keras import Model
+from tensorflow.keras.layers import Dropout,Dense,Flatten,Embedding,LSTM
+from tensorflow.keras.preprocessing.text import Tokenizer
  
 def preprocess_text(sen):
     sentence = remove_tags(sen)
@@ -19,12 +22,6 @@ def remove_tags(text):
     return TAG_RE.sub('',text)
  
 import pickle
-
-with open("model.pkl", 'rb') as handle:
-    model = pickle.load(handle)
-
-with open('tokenizer.pickle', 'rb') as handle:
-    tokenizer = pickle.load(handle)
 
 def predict(tokenizer,model,comment):
     text = comment
@@ -42,6 +39,11 @@ def predict(tokenizer,model,comment):
         return "Positive"
     
 def main():
+    with open("model.pkl", 'rb') as handle:
+        model = pickle.load(handle)
+
+    with open('tokenizer.pickle', 'rb') as handle:
+        tokenizer = pickle.load(handle)
     comment = st.text_input("Enter your comment","Type here...")
     if st.button("Submit"):
         prediction = predict(tokenizer,model,comment)
