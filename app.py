@@ -4,7 +4,7 @@ st.subheader("welcome")
 
 
 import re
-#from tensorflow.keras.preprocessing.sequence import pad_sequences
+from tensorflow.keras.preprocessing.sequence import pad_sequences
  
 def preprocess_text(sen):
     sentence = remove_tags(sen)
@@ -31,7 +31,7 @@ def predict(tokenizer,model,comment):
     text = preprocess_text(text)
     text = [text.split(" ")]
     text = tokenizer.texts_to_sequences(text)
-    #text = pad_sequences(text)
+    text = pad_sequences(text)
     prediction=model.predict(text)
     value = prediction[0][0]
     if value<0.3:
