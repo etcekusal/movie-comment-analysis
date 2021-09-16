@@ -24,8 +24,12 @@ TAG_RE = re.compile(r'<[^>]+>')
  
 def remove_tags(text):
     return TAG_RE.sub('',text)
-model = tf.keras.models.load_model("https://drive.google.com/drive/folders/1UF6o5vqBsmDNV7gv3gnvWwVWYFlr4_EX?usp=sharing")
+ 
 import pickle
+
+with open("model.pkl", 'rb') as handle:
+    model = pickle.load(handle)
+
 with open('tokenizer.pickle', 'rb') as handle:
     tokenizer = pickle.load(handle)
 
