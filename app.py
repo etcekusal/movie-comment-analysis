@@ -2,16 +2,9 @@ import streamlit as st
 st.title("Hello")
 st.subheader("welcome")
 
-import pandas as pd 
-import numpy as np 
+
 import re
-import tensorflow as tf
-from tensorflow.keras.preprocessing.text import one_hot
 from tensorflow.keras.preprocessing.sequence import pad_sequences
-from tensorflow.keras import Model,Sequential
-from tensorflow.keras.layers import Dropout,Dense,Flatten,Embedding,LSTM
-from sklearn.model_selection import train_test_split
-from tensorflow.keras.preprocessing.text import Tokenizer
  
 def preprocess_text(sen):
     sentence = remove_tags(sen)
