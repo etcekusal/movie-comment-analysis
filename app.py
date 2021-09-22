@@ -8,6 +8,8 @@ from tensorflow.keras.preprocessing.sequence import pad_sequences
 from tensorflow.keras import Model
 from tensorflow.keras.layers import Dropout,Dense,Flatten,Embedding,LSTM
 from tensorflow.keras.preprocessing.text import Tokenizer
+from gtts import gTTS
+from IPython.display import Audio
  
 def preprocess_text(sen):
     sentence = remove_tags(sen)
@@ -25,6 +27,11 @@ import pickle
 
 def predict(tokenizer,model,comment):
     text = comment
+    tts = gTTS("you are actually mad")
+    tts.save("check.wav")
+    audio = "check.wav"
+    #Audio(audio)
+    st.audio(audio)
     text = preprocess_text(text)
     text = [text.split(" ")]
     text = tokenizer.texts_to_sequences(text)
