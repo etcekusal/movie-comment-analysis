@@ -28,10 +28,12 @@ import pickle
 def predict(tokenizer,model,comment):
     text = comment
     tts = gTTS("you are actually mad")
-    tts.save("check.wav")
-    audio = "check.wav"
+    tts.save("check.mp3")
+    audio = "check.mp3"
     #Audio(audio)
-    st.audio(audio)
+    audio_file = open(‘check.mp3’, ‘rb’)
+    audio_bytes = audio_file.read()
+    st.audio(audio_bytes, format=‘audio/ogg’,start_time=0)
     text = preprocess_text(text)
     text = [text.split(" ")]
     text = tokenizer.texts_to_sequences(text)
